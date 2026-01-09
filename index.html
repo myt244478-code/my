@@ -3,75 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتب المحامي المحترف</title>
+    <title>سينما ريفيو - تقييمات الأفلام</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; overflow-x: hidden; }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background-color: #0b0b0b; color: #fff; overflow-x: hidden; }
         
-        /* تأثيرات الانتقال بين الصفحات */
-        .page { display: none; min-height: 100vh; animation: fadeIn 0.8s ease-in-out; }
+        /* تنقل الصفحات */
+        .page { display: none; min-height: 100vh; animation: slideIn 0.5s ease; }
         .active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
-        /* الصفحة الرئيسية */
-        header { background: #002c54; color: white; text-align: center; padding: 100px 20px; }
-        .btn { display: inline-block; background: #c5a059; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; margin-top: 20px; font-size: 1.1em; }
-        .btn:hover { background: #a38345; transform: scale(1.05); }
-
-        /* الصفحة الجديدة (صفحة السيرة الذاتية أو النجاحات) */
-        .new-page { background: white; padding: 60px 20px; text-align: center; }
-        .success-box { border: 2px solid #c5a059; padding: 20px; margin: 20px auto; max-width: 600px; border-radius: 10px; transition: 0.3s; }
-        .success-box:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        /* الهيدر */
+        header { background: linear-gradient(to bottom, #e50914, #0b0b0b); padding: 60px 20px; text-align: center; }
         
-        footer { text-align: center; padding: 20px; background: #eee; font-size: 0.9em; }
+        /* شبكة الأفلام */
+        .movies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 40px; max-width: 1200px; margin: 0 auto; }
+        .movie-card { background: #1f1f1f; border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid #333; }
+        .movie-card:hover { transform: scale(1.05); border-color: #e50914; box-shadow: 0 10px 20px rgba(229, 9, 20, 0.2); }
+        .movie-card img { width: 100%; height: 350px; object-fit: cover; }
+        .movie-info { padding: 15px; text-align: center; }
+        
+        /* صفحة التقييم التفصيلية */
+        .review-container { max-width: 900px; margin: 40px auto; padding: 20px; background: #181818; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 30px; }
+        .review-img { width: 300px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .review-content { flex: 1; min-width: 300px; }
+        .rating-stars { color: #f1c40f; font-size: 1.5rem; margin: 10px 0; }
+        .back-btn { background: #e50914; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 20px; transition: 0.3s; }
+        .back-btn:hover { background: #b20710; }
+
+        footer { text-align: center; padding: 30px; color: #777; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
     <div id="homePage" class="page active">
         <header>
-            <h1>مكتب المحامي المحترف</h1>
-            <p>نحن نوفر لك الحماية القانونية التي تستحقها</p>
-            <button class="btn" onclick="showPage('successPage')">مشاهدة سجل النجاحات والقضايا</button>
+            <h1>سينما ريفيو 🍿</h1>
+            <p>اكتشف تقييماتي لأحدث الأفلام العالمية</p>
         </header>
-        <div style="text-align: center; padding: 50px;">
-            <h2>مرحباً بك في منصتنا الرقمية</h2>
-            <p>اضغط على الزر أعلاه للانتقال لصفحة الإنجازات بلمح البصر.</p>
+        
+        <div class="movies-grid">
+            <div class="movie-card" onclick="openReview('Interstellar', 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500', '9.5/10', 'تحفة فنية سينمائية تأخذك في رحلة عبر الزمن والفضاء. الموسيقى التصويرية لهانز زيمر تجعل التجربة لا تُنسى.')">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="فيلم">
+                <div class="movie-info">
+                    <h3>Interstellar</h3>
+                    <div style="color: #f1c40f;">★★★★★</div>
+                </div>
+            </div>
+
+            <div class="movie-card" onclick="openReview('The Dark Knight', 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=500', '10/10', 'أفضل فيلم بطل خارق في التاريخ. أداء هيث ليدجر في دور الجوكر هو أداء للتاريخ.')">
+                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=500" alt="فيلم">
+                <div class="movie-info">
+                    <h3>The Dark Knight</h3>
+                    <div style="color: #f1c40f;">★★★★★</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="successPage" class="page">
-        <div class="new-page">
-            <h1 style="color: #002c54;">سجل النجاحات والإنجازات 🏆</h1>
-            <p>هذه صفحة جديدة تماماً تم فتحها بدون تحميل ملف آخر</p>
+    <div id="reviewPage" class="page">
+        <div style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+            <button class="back-btn" onclick="showPage('homePage')">← العودة للقائمة</button>
             
-            <div class="success-box">
-                <h3>قضية كبرى رقم 1</h3>
-                <p>تم استرداد حقوق بقيمة 5 مليون ريال في قضية تجارية معقدة.</p>
+            <div class="review-container">
+                <img id="res-img" src="" class="review-img" alt="بوستر">
+                <div class="review-content">
+                    <h1 id="res-title" style="color: #e50914;"></h1>
+                    <div class="rating-stars" id="res-stars"></div>
+                    <h3 style="color: #f1c40f;">التقييم الرقمي: <span id="res-score"></span></h3>
+                    <p id="res-desc" style="font-size: 1.2em; line-height: 1.8;"></p>
+                </div>
             </div>
-
-            <div class="success-box">
-                <h3>قضية كبرى رقم 2</h3>
-                <p>البراءة في قضية جنائية استمرت لأكثر من 3 سنوات.</p>
-            </div>
-
-            <button class="btn" style="background: #002c54;" onclick="showPage('homePage')">العودة للرئيسية</button>
         </div>
     </div>
 
-    <footer> جميع الحقوق محفوظة © 2026 </footer>
+    <footer> جميع الحقوق محفوظة لمدونة سينما ريفيو © 2026 </footer>
 
     <script>
-        // وظيفة التبديل بين الصفحات بسلاسة
+        // تبديل الصفحات
         function showPage(pageId) {
-            // إخفاء كل الصفحات
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            // إظهار الصفحة المطلوبة فقط
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            // صعود المتصفح للأعلى عند التبديل
-            window.scrollTo(0, 0);
+            window.scrollTo(0,0);
+        }
+
+        // تعبئة بيانات الفيلم وفتحه
+        function openReview(title, img, score, desc) {
+            document.getElementById('res-title').innerText = title;
+            document.getElementById('res-img').src = img;
+            document.getElementById('res-score').innerText = score;
+            document.getElementById('res-desc').innerText = desc;
+            document.getElementById('res-stars').innerText = "★★★★★"; // يمكن جعلها متغيرة أيضاً
+            
+            showPage('reviewPage');
         }
     </script>
 </body>
