@@ -3,72 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتب المحامي الاحترافي</title>
+    <title>مكتب المحامي المحترف</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; transition: 0.5s; }
-        header { background: #002244; color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; overflow-x: hidden; }
         
-        /* تأثيرات الحركة Animation */
-        .page { display: none; animation: fadeIn 0.8s ease-in-out; }
+        /* تأثيرات الانتقال بين الصفحات */
+        .page { display: none; min-height: 100vh; animation: fadeIn 0.8s ease-in-out; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-right: 5px solid #c5a059; }
-
-        .btn { background: #c5a059; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; text-decoration: none; display: inline-block; }
+        /* الصفحة الرئيسية */
+        header { background: #002c54; color: white; text-align: center; padding: 100px 20px; }
+        .btn { display: inline-block; background: #c5a059; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; margin-top: 20px; font-size: 1.1em; }
         .btn:hover { background: #a38345; transform: scale(1.05); }
-        .btn-back { background: #444; margin-top: 20px; }
+
+        /* الصفحة الجديدة (صفحة السيرة الذاتية أو النجاحات) */
+        .new-page { background: white; padding: 60px 20px; text-align: center; }
+        .success-box { border: 2px solid #c5a059; padding: 20px; margin: 20px auto; max-width: 600px; border-radius: 10px; transition: 0.3s; }
+        .success-box:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        footer { text-align: center; padding: 20px; background: #eee; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1 id="main-title">مكتب المحامي الاستشاري</h1>
-    <p>خبرة قانونية تمتد لعقود في حماية حقوقكم</p>
-</header>
-
-<div class="container">
-    <div id="home-page" class="page active">
-        <div class="card">
-            <h2>مرحباً بك في مكتبنا</h2>
-            <p>نحن نقدم حلولاً قانونية مبتكرة تتناسب مع احتياجاتك. يمكنك تصفح سجل القضايا الناجحة بالضغط على الزر أدناه.</p>
-            <button class="btn" onclick="showPage('cases-page')">عرض سجل القضايا الناجحة ←</button>
-        </div>
-        
-        <div class="card">
-            <h3>تخصصاتنا</h3>
-            <p>القضايا التجارية، المدنية، والجنائية بأعلى مستويات الدقة.</p>
+    <div id="homePage" class="page active">
+        <header>
+            <h1>مكتب المحامي المحترف</h1>
+            <p>نحن نوفر لك الحماية القانونية التي تستحقها</p>
+            <button class="btn" onclick="showPage('successPage')">مشاهدة سجل النجاحات والقضايا</button>
+        </header>
+        <div style="text-align: center; padding: 50px;">
+            <h2>مرحباً بك في منصتنا الرقمية</h2>
+            <p>اضغط على الزر أعلاه للانتقال لصفحة الإنجازات بلمح البصر.</p>
         </div>
     </div>
 
-    <div id="cases-page" class="page">
-        <div class="card">
-            <h2>سجل القضايا والنجاحات</h2>
-            <p>هنا تجد تفاصيل القضايا الكبرى التي حقق فيها مكتبنا انتصارات قانونية ساحقة لعملائنا.</p>
-            <ul>
-                <li>قضية تجارية كبرى (2025) - تم استرداد كافة التعويضات.</li>
-                <li>قضية ملكية فكرية - حماية العلامة التجارية لشركة دولية.</li>
-            </ul>
-            <button class="btn btn-back" onclick="showPage('home-page')">العودة للرئيسية</button>
+    <div id="successPage" class="page">
+        <div class="new-page">
+            <h1 style="color: #002c54;">سجل النجاحات والإنجازات 🏆</h1>
+            <p>هذه صفحة جديدة تماماً تم فتحها بدون تحميل ملف آخر</p>
+            
+            <div class="success-box">
+                <h3>قضية كبرى رقم 1</h3>
+                <p>تم استرداد حقوق بقيمة 5 مليون ريال في قضية تجارية معقدة.</p>
+            </div>
+
+            <div class="success-box">
+                <h3>قضية كبرى رقم 2</h3>
+                <p>البراءة في قضية جنائية استمرت لأكثر من 3 سنوات.</p>
+            </div>
+
+            <button class="btn" style="background: #002c54;" onclick="showPage('homePage')">العودة للرئيسية</button>
         </div>
     </div>
-</div>
 
-<script>
-    function showPage(pageId) {
-        // إخفاء كل الصفحات
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
-        });
-        // إظهار الصفحة المطلوبة
-        document.getElementById(pageId).classList.add('active');
-        // الصعود لأعلى الصفحة تلقائياً
-        window.scrollTo(0, 0);
-    }
-</script>
+    <footer> جميع الحقوق محفوظة © 2026 </footer>
 
+    <script>
+        // وظيفة التبديل بين الصفحات بسلاسة
+        function showPage(pageId) {
+            // إخفاء كل الصفحات
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // إظهار الصفحة المطلوبة فقط
+            document.getElementById(pageId).classList.add('active');
+            // صعود المتصفح للأعلى عند التبديل
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
