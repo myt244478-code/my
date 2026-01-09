@@ -3,251 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتب المحامي [اسم المحامي] - استشارات قانونية متخصصة</title>
+    <title>مكتب المحامي الاحترافي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* الأنماط الأساسية */
-        body {
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa; /* لون فاتح للخلفية */
-            color: #343a40; /* لون نص أساسي غامق */
-            line-height: 1.6;
-            direction: rtl; /* لجعل الاتجاه من اليمين لليسار */
-            text-align: right; /* محاذاة النص لليمين */
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; transition: 0.5s; }
+        header { background: #002244; color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
+        
+        /* تأثيرات الحركة Animation */
+        .page { display: none; animation: fadeIn 0.8s ease-in-out; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* رأس الصفحة (Header) */
-        header {
-            background: linear-gradient(to right, #003366, #005f99); /* تدرج أزرق داكن */
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.8em;
-            letter-spacing: 1.5px;
-        }
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-        .contact-button {
-            display: inline-block;
-            background-color: #e6b800; /* لون ذهبي مميز */
-            color: #003366;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Animation */
-        }
-        .contact-button:hover {
-            background-color: #ffcc00; /* أغمق قليلاً عند التمرير */
-            transform: translateY(-3px); /* يرتفع قليلاً عند التمرير */
-        }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-right: 5px solid #c5a059; }
 
-        /* قسم عن المكتب (About Us) */
-        .about-section {
-            background-color: white;
-            padding: 50px 0;
-            text-align: center;
-            margin-top: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .about-section h2 {
-            color: #003366;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        .about-section h2::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: -10px;
-            width: 70%;
-            height: 3px;
-            background-color: #e6b800;
-        }
-        .about-section p {
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        /* قسم الخدمات (Services) */
-        .services-section {
-            background-color: #f0f0f5; /* لون رمادي فاتح */
-            padding: 50px 0;
-            margin-top: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .services-section h2 {
-            text-align: center;
-            color: #003366;
-            font-size: 2.2em;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block; /* ليتوسط الخط تحته */
-            right: 50%; /* لتوسيط الخط */
-            transform: translateX(50%); /* لتوسيط الخط */
-        }
-        .services-section h2::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: -10px;
-            width: 70%;
-            height: 3px;
-            background-color: #e6b800;
-            transform: translateX(20%); /* تعديل بسيط لتوسيط الخط أكثر */
-        }
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .service-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation */
-            border-bottom: 5px solid transparent; /* قاعدة للحافة */
-        }
-        .service-card:hover {
-            transform: translateY(-10px); /* يرتفع للأعلى عند التمرير */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* ظل أكبر عند التمرير */
-            border-bottom-color: #e6b800; /* لون ذهبي للحافة السفلية عند التمرير */
-        }
-        .service-card h3 {
-            color: #003366;
-            font-size: 1.6em;
-            margin-bottom: 15px;
-        }
-        .service-card p {
-            color: #666;
-            font-size: 1em;
-        }
-
-        /* قسم الاتصال (Contact) */
-        .contact-section {
-            background-color: #003366; /* لون أزرق داكن */
-            color: white;
-            padding: 50px 0;
-            margin-top: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-        .contact-section h2 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        .contact-section h2::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: -10px;
-            width: 70%;
-            height: 3px;
-            background-color: #e6b800;
-        }
-        .contact-info p {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        .contact-info a {
-            color: #e6b800;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-info a:hover {
-            color: #ffcc00;
-        }
-
-        /* تذييل الصفحة (Footer) */
-        footer {
-            text-align: center;
-            padding: 25px 0;
-            margin-top: 40px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-        }
+        .btn { background: #c5a059; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #a38345; transform: scale(1.05); }
+        .btn-back { background: #444; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>مكتب المحامي [اسم المحامي هنا]</h1>
-            <p>خبراء في الاستشارات القانونية والدفاع عن حقوقكم</p>
-            <a href="#contact" class="contact-button">تواصل معنا الآن</a>
-        </div>
-    </header>
 
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>عن المكتب</h2>
-            <p>مكتب المحامي [اسم المحامي] يقدم خدمات قانونية متكاملة لعملائه الكرام منذ عام [سنة التأسيس]. نلتزم بتقديم المشورة القانونية الدقيقة والتمثيل الفعال في مختلف المجالات لضمان حقوقكم وتحقيق العدالة.</p>
-            <p>فريق عملنا يضم نخبة من المحامين ذوي الكفاءة والخبرة الطويلة في التعامل مع القضايا الأكثر تعقيدًا، مع التزامنا بأعلى معايير السرية المهنية والجودة.</p>
-        </div>
-    </section>
+<header>
+    <h1 id="main-title">مكتب المحامي الاستشاري</h1>
+    <p>خبرة قانونية تمتد لعقود في حماية حقوقكم</p>
+</header>
 
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2>خدماتنا القانونية</h2>
-            <div class="service-cards">
-                <div class="service-card">
-                    <h3>القانون التجاري</h3>
-                    <p>صياغة العقود، تأسيس الشركات، وحل النزاعات التجارية.</p>
-                </div>
-                <div class="service-card">
-                    <h3>القانون المدني</h3>
-                    <p>قضايا التعويضات، العقارات، والملكية الفكرية.</p>
-                </div>
-                <div class="service-card">
-                    <h3>القانون الجنائي</h3>
-                    <p>الدفاع في القضايا الجنائية المختلفة وتقديم الاستشارات.</p>
-                </div>
-                <div class="service-card">
-                    <h3>الاستشارات القانونية</h3>
-                    <p>تقديم النصح القانوني في مختلف المسائل لضمان الامتثال للقوانين.</p>
-                </div>
-            </div>
+<div class="container">
+    <div id="home-page" class="page active">
+        <div class="card">
+            <h2>مرحباً بك في مكتبنا</h2>
+            <p>نحن نقدم حلولاً قانونية مبتكرة تتناسب مع احتياجاتك. يمكنك تصفح سجل القضايا الناجحة بالضغط على الزر أدناه.</p>
+            <button class="btn" onclick="showPage('cases-page')">عرض سجل القضايا الناجحة ←</button>
         </div>
-    </section>
+        
+        <div class="card">
+            <h3>تخصصاتنا</h3>
+            <p>القضايا التجارية، المدنية، والجنائية بأعلى مستويات الدقة.</p>
+        </div>
+    </div>
 
-    <section id="contact" class="contact-section">
-        <div class="container contact-info">
-            <h2>تواصل معنا</h2>
-            <p>نحن هنا لخدمتكم والإجابة على استفساراتكم. لا تترددوا في الاتصال بنا.</p>
-            <p>الهاتف: <a href="tel:+966123456789">+966 12 345 6789</a></p>
-            <p>البريد الإلكتروني: <a href="mailto:info@yourlawfirm.com">info@yourlawfirm.com</a></p>
-            <p>العنوان: [عنوان المكتب هنا]، [المدينة]، [الدولة]</p>
+    <div id="cases-page" class="page">
+        <div class="card">
+            <h2>سجل القضايا والنجاحات</h2>
+            <p>هنا تجد تفاصيل القضايا الكبرى التي حقق فيها مكتبنا انتصارات قانونية ساحقة لعملائنا.</p>
+            <ul>
+                <li>قضية تجارية كبرى (2025) - تم استرداد كافة التعويضات.</li>
+                <li>قضية ملكية فكرية - حماية العلامة التجارية لشركة دولية.</li>
+            </ul>
+            <button class="btn btn-back" onclick="showPage('home-page')">العودة للرئيسية</button>
         </div>
-    </section>
+    </div>
+</div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 مكتب المحامي [اسم المحامي]. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
+<script>
+    function showPage(pageId) {
+        // إخفاء كل الصفحات
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        // إظهار الصفحة المطلوبة
+        document.getElementById(pageId).classList.add('active');
+        // الصعود لأعلى الصفحة تلقائياً
+        window.scrollTo(0, 0);
+    }
+</script>
+
 </body>
 </html>
